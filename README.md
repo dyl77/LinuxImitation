@@ -1,8 +1,8 @@
 # COP 3530 - Data Structures and Algorithms I
 
-# Due:
+# Due: April 24th
 
-# Project 4- FileSystem simulator 
+# Project 4- LinuxLite
 
 ## Objective:
 This project is meant to provide you with hands-on experience on implementation of trees. In particular, you will be implementing a file system simulator. Files and directories will be represented by nodes forming a binary tree.  
@@ -11,6 +11,7 @@ This project is meant to provide you with hands-on experience on implementation 
 
 Develop a program that uses:
 
+- Recursion
 - Trees
 
 ## Preparation:
