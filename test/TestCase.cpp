@@ -1,4 +1,4 @@
-//
+/i/
 //  TestCase.cpp
 //  HashTable
 //
@@ -10,8 +10,8 @@
 
 #include "catch/catch.hpp"
 #include "../node.hpp"
-#include "../filesystem.hpp"
-
+//#include "../filesystem.hpp"
+/*
 TEST_CASE ("Node")
 {
     Node * n = new Node("root",'d');
@@ -133,7 +133,7 @@ TEST_CASE("Test rm of a child dir with files and dirs inside")
   delete fs;
   
 }
-
+*/
 
 
 // Add more test cases as needed
