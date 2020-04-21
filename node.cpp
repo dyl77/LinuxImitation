@@ -9,6 +9,7 @@ Node::Node(std::string name, char type)
 {
 	this->type = type;
 	this->name = name;
+	//this->children.resize(0);
 	this->parent = nullptr;
 }
 
@@ -16,7 +17,7 @@ Node::Node()
 {
 	this->type = 'n';
 	this->name = "NULL";
-	//this->children = nullptr;
+	//this->children.resize(0);
 	this->parent = nullptr;
 }
 
@@ -52,7 +53,7 @@ Node* Node::GetChild(std::string name)
 
 std::vector<Node*> Node::GetChildren()
 {
-	
+	return this->children;
 }
 
 Node* Node::GetParent()
