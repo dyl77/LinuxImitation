@@ -9,7 +9,6 @@ Node::Node(std::string name, char type)
 {
 	this->type = type;
 	this->name = name;
-	//this->children.resize(0);
 	this->parent = nullptr;
 }
 
@@ -17,23 +16,29 @@ Node::Node()
 {
 	this->type = 'n';
 	this->name = "NULL";
-	//this->children.resize(0);
 	this->parent = nullptr;
 }
 
 void Node::AddChild(Node* child)
 {
-
+	this->children.push_back(child);
 }
 
 void Node::AddChild(std::string name, char type)
 {
-
+	Node* newChild = new Node(name, type);
+	this->children.push_back(newChild);
 }
 
 bool Node::RemoveChild(std::string name)
 {
-
+	Node* searchNode = GetChild(name);
+	std::vector<Node*> searchNodeChildren = searchNode->GetChildren();
+	
+	if(searchNodeChildren.size() == 0)
+	{
+		this->children.pop_back();
+	}
 }
 
 void Node::SetParent(Node* parent)
@@ -48,7 +53,14 @@ void Node::SetType(char type)
 
 Node* Node::GetChild(std::string name)
 {
-
+	for(long unsigned int i = 0; i < children.size(); ++i)
+	{
+		if(children.at(i)->GetName() == name)
+		{
+			return children.at(i);
+		}
+	}
+	return nullptr;
 }
 
 std::vector<Node*> Node::GetChildren()

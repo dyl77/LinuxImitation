@@ -18,7 +18,7 @@ TEST_CASE ("Node")
     REQUIRE (n->GetType() == 'd');
     REQUIRE (n->GetParent() == nullptr);
     REQUIRE (n->GetChildren().size() == 0);
-/*
+
     Node * child = new Node ("child",'f');
     n->AddChild(child);
     REQUIRE (n->GetChild("child") == child);
@@ -37,7 +37,7 @@ TEST_CASE ("Node")
     delete n;
     delete child;
     delete parent;
-    */
+    
 }
 /*
 TEST_CASE("Test creating a file system")
