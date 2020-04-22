@@ -18,6 +18,7 @@ class Node
 		void AddChild(Node* child);
 		void AddChild(std::string name, char type);
 		bool RemoveChild(std::string name);
+		void SetName(std::string name);
 		void SetParent(Node* parent);
 		void SetType(char type);
 		Node* GetChild(std::string name);

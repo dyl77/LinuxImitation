@@ -41,6 +41,11 @@ bool Node::RemoveChild(std::string name)
 	}
 }
 
+void Node::SetName(std::string name)
+{
+	this->name = name;
+}
+
 void Node::SetParent(Node* parent)
 {
 	this->parent = parent;

@@ -9,7 +9,7 @@
 
 #include "catch/catch.hpp"
 #include "../node.hpp"
-//#include "../filesystem.hpp"
+#include "../filesystem.hpp"
 
 TEST_CASE ("Node")
 {
@@ -39,7 +39,7 @@ TEST_CASE ("Node")
     delete parent;
     
 }
-/*
+
 TEST_CASE("Test creating a file system")
 {
    FileSystem * fs = new FileSystem();
@@ -47,7 +47,7 @@ TEST_CASE("Test creating a file system")
    REQUIRE (fs->ls() == "");
    delete fs;
 }
-
+/*
 TEST_CASE ("Test touch and mkdir")
 {
    FileSystem * fs = new FileSystem();
