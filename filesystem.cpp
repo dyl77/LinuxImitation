@@ -19,10 +19,7 @@ FileSystem::FileSystem()
 
 FileSystem::~FileSystem()
 {
-	/*
-	delete this->root;
-	delete this->currentDirectory;
-	*/
+
 }
 
 std::string FileSystem::mkdir(std::string name)
@@ -54,28 +51,13 @@ std::string FileSystem::touch(std::string name)
 	}
 	else
 	{
-		creationStatus = "Error: " + newFile->GetName() + "exists";
+		creationStatus = "Error: " + newFile->GetName() + " exists";
 	}
 	return creationStatus;
 }
 
 std::string FileSystem::pwd()
 {
-	/*
-	Node* loopNode = new Node;
-	loopNode = currentDirectory;
-
-	while(loopNode->GetParent() != nullptr)
-	{
-		loopNode = loopNode->GetParent();
-	}
-
-	while(loopNode != currentDirectory)
-	{
-		std::cout << "/" << loopNode->GetName();
-	}
-	*/
-
 	std::string workingDirectory = "";
 	Node* tempNode = this->currentDirectory;
 
@@ -90,11 +72,11 @@ std::string FileSystem::pwd()
 std::string FileSystem::ls()
 {
 	std::vector<Node*> currentChildren = this->currentDirectory->GetChildren();
-	std::string listDirectory;
+	std::string listDirectory = "";
 
 	for(unsigned int i = 0; i < currentChildren.size(); ++i)
 	{
-		listDirectory = currentChildren.at(i)->GetType() + " " + currentChildren.at(i)->GetName() + "\n";
+		listDirectory = listDirectory + currentChildren.at(i)->GetType() + " " + currentChildren.at(i)->GetName() + "\n";
 	}
 	return listDirectory;
 }
