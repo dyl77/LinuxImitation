@@ -61,7 +61,7 @@ TEST_CASE ("Test touch and mkdir")
    REQUIRE (fs->pwd() == "/root");
    delete fs;
 }
-/*
+
 TEST_CASE("Test changing directories")
 {
    FileSystem * fs = new FileSystem();
@@ -84,7 +84,7 @@ TEST_CASE("Test changing directories")
    REQUIRE (fs->cd("dir3") == "/root/dir/dir3");
    delete fs;
 }
-
+/*
 TEST_CASE("Test mv")
 {
   FileSystem * fs = new FileSystem();

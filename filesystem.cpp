@@ -7,7 +7,7 @@ void FileSystem::AddNode(Node* newNode)
 
 Node* FileSystem::FindNode(std::string name)
 {
-	this->currentDirectory->GetChild(name);	
+	return this->currentDirectory->GetChild(name);	
 }
 
 FileSystem::FileSystem()
@@ -30,6 +30,7 @@ std::string FileSystem::mkdir(std::string name)
 	if(currentDirectory->GetChild(name) == nullptr)
 	{
 		currentDirectory->AddChild(newDir);
+		newDir->SetParent(currentDirectory);
 		creationStatus = "directory " + newDir->GetName() + " created successfully";
 	}
 	else
@@ -47,6 +48,7 @@ std::string FileSystem::touch(std::string name)
 	if(currentDirectory->GetChild(name) == nullptr)
 	{
 		currentDirectory->AddChild(newFile);
+		newFile->SetParent(currentDirectory);
 		creationStatus = "file " + newFile->GetName() + " created successfully";
 	}
 	else
@@ -93,5 +95,34 @@ std::string FileSystem::mv(std::string from, std::string to)
 
 std::string FileSystem::cd(std::string dirname)
 {
+	if(dirname == "..")
+	{
+		if(currentDirectory != this->root)
+		{
+			this->currentDirectory = this->currentDirectory->GetParent();
+			return pwd();
+		}
+		else
+		{
+			return "can't change to directory " + dirname;
+		}
+	}
 
+	if(FindNode(dirname) != nullptr)
+	{
+		if(FindNode(dirname)->GetType() == 'd')
+		{
+			this->currentDirectory = FindNode(dirname);
+			return pwd();
+		}
+		else
+		{
+			return dirname + ": is not a directory";
+		}
+	}
+	else
+	{
+		return dirname + ": no such directory";
+
+	}
 }
