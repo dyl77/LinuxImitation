@@ -90,7 +90,15 @@ std::string FileSystem::rm(std::string name)
 
 std::string FileSystem::mv(std::string from, std::string to)
 {
-
+	if(FindNode(from) != nullptr)
+	{
+		FindNode(from)->SetName(to);
+		return "file/dir renamed successfully";
+	}
+	else
+	{
+		return "file not found";
+	}
 }
 
 std::string FileSystem::cd(std::string dirname)

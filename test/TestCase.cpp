@@ -84,7 +84,7 @@ TEST_CASE("Test changing directories")
    REQUIRE (fs->cd("dir3") == "/root/dir/dir3");
    delete fs;
 }
-/*
+
 TEST_CASE("Test mv")
 {
   FileSystem * fs = new FileSystem();
@@ -94,7 +94,7 @@ TEST_CASE("Test mv")
   REQUIRE (fs->mv("file3", "file4") == "file not found");
   delete fs;
 }
-
+/*
 TEST_CASE("Test rm from empty dir")
 {
   FileSystem * fs = new FileSystem();
