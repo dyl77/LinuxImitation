@@ -2,7 +2,12 @@
 
 void Node::RemoveHelper(Node* subtree)
 {
+	if(children.size() == 0)
+	{
+		delete subtree;
+	}
 
+	RemoveHelper(children.at(0));
 }
 
 Node::Node(std::string name, char type)
@@ -38,7 +43,15 @@ bool Node::RemoveChild(std::string name)
 	if(searchNodeChildren.size() == 0)
 	{
 		this->children.pop_back();
+		return true;
 	}
+	else
+	{
+		RemoveHelper(searchNode);
+		return true;
+	}
+
+	return false;
 }
 
 void Node::SetName(std::string name)

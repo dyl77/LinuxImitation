@@ -94,14 +94,14 @@ TEST_CASE("Test mv")
   REQUIRE (fs->mv("file3", "file4") == "file not found");
   delete fs;
 }
-/*
+
 TEST_CASE("Test rm from empty dir")
 {
   FileSystem * fs = new FileSystem();
   REQUIRE(fs->rm("file1") == "No such file or directory");
   delete fs;
 }
-
+/*
 TEST_CASE("Test rm child that has siblings")
 { 
   FileSystem * fs = new FileSystem();
