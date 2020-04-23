@@ -101,7 +101,7 @@ TEST_CASE("Test rm from empty dir")
   REQUIRE(fs->rm("file1") == "No such file or directory");
   delete fs;
 }
-/*
+
 TEST_CASE("Test rm child that has siblings")
 { 
   FileSystem * fs = new FileSystem();
@@ -111,7 +111,7 @@ TEST_CASE("Test rm child that has siblings")
   REQUIRE(fs->ls() == "f file1\n");
   delete fs;
 }
-
+/*
 TEST_CASE("Test rm of a child dir with files and dirs inside")
 {
   FileSystem * fs = new FileSystem();

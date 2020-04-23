@@ -2,6 +2,21 @@
 
 void Node::RemoveHelper(Node* subtree)
 {
+	/*
+	if(subtree->GetChildren().size() == 0)
+	{
+		delete subtree;
+	}
+	else
+	{
+		for(unsigned int i = 0; i < subtree->GetChildren().size(); ++i)
+		{
+			RemoveHelper(subtree->GetChildren().at(i));
+		}
+		delete subtree;
+	}
+*/
+	//RemoveHelper(children.at(0));
 	if(children.size() == 0)
 	{
 		delete subtree;
@@ -39,10 +54,19 @@ bool Node::RemoveChild(std::string name)
 {
 	Node* searchNode = GetChild(name);
 	std::vector<Node*> searchNodeChildren = searchNode->GetChildren();
-	
+
 	if(searchNodeChildren.size() == 0)
 	{
-		this->children.pop_back();
+		//delete this->GetChild(name);
+		//for(unsigned int i = 0; i < this->children.size()
+		//this->children.pop_back();
+		for(unsigned int i = 0; i < children.size(); ++i)
+		{
+			if(children.at(i)->GetName() == name)
+			{
+				children.erase(children.begin()+i);
+			}
+		}
 		return true;
 	}
 	else
@@ -50,7 +74,6 @@ bool Node::RemoveChild(std::string name)
 		RemoveHelper(searchNode);
 		return true;
 	}
-
 	return false;
 }
 

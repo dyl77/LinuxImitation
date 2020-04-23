@@ -87,9 +87,16 @@ std::string FileSystem::rm(std::string name)
 {
 	if(FindNode(name) != nullptr)
 	{
-		currentDirectory = FindNode(name)->GetParent();
+	//	currentDirectory = FindNode(name)->GetParent();
 		currentDirectory->RemoveChild(name);
-		return name + " removed successfully";
+	//	if(currentDirectory->RemoveChild(name) == true)
+	//	{
+			return name + " removed successfully";
+	//	}
+	//	else
+	//	{
+	//		return "No such file or directory";
+	//	}
 	}
 	else
 	{
