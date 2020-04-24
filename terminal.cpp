@@ -2,7 +2,7 @@
 
 Terminal::Terminal()
 {
-
+	this->fs = new FileSystem();
 }
 
 void Terminal::Run()
@@ -10,12 +10,30 @@ void Terminal::Run()
 	std::string command;
 	std::string modifier1;
 	std::string modifier2;
+	std::string tempstring;
+
 
 	do
-	{
+	{	
 		std::cout << "$ ";
-		std::cin >> command >> modifier1 >> modifier2;
+		std::getline(std::cin, tempstring);
 
+		std::size_t position = tempstring.find(' ');
+		command = tempstring.substr(0,position);
+		tempstring.erase(0,position+1);
+
+		if(tempstring.size() != 0)
+		{
+			position = tempstring.find(' ');
+			modifier1 = tempstring.substr(0,position);
+			tempstring.erase(0,position+1);
+		}
+
+		if(tempstring.size() != 0)
+		{
+			modifier2 = tempstring;
+		}
+	
 		if(command == "mkdir")
 		{
 			std::cout << this->fs->mkdir(modifier1) << std::endl;
