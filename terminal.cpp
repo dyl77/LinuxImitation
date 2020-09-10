@@ -38,9 +38,9 @@ void Terminal::Run()
 		{
 			std::cout << this->fs->mkdir(modifier1) << std::endl;
 		}
-		if(command == "touch")
+		if(command == "addf")
 		{
-			std::cout << this->fs->touch(modifier1) << std::endl;
+			std::cout << this->fs->addf(modifier1) << std::endl;
 		}
 		if(command == "pwd")
 		{
@@ -62,5 +62,5 @@ void Terminal::Run()
 		{
 			std::cout << this->fs->cd(modifier1) << std::endl;
 		}
-	}while(command != "exit");
+	}while(command != "bye");
 }

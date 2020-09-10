@@ -40,7 +40,7 @@ std::string FileSystem::mkdir(std::string name)
 	return creationStatus;
 }
 
-std::string FileSystem::touch(std::string name)
+std::string FileSystem::addf(std::string name)
 {
 	std::string creationStatus;
 	Node* newFile = new Node(name, 'f');
@@ -141,4 +141,26 @@ std::string FileSystem::cd(std::string dirname)
 		return dirname + ": no such directory";
 
 	}
+}
+
+std::string FileSystem::cp(std::string name, std::string to)
+{
+	/*
+	std::string copiedName = "";
+
+	if(FindNode(name) != nullptr)
+	{
+		copiedName = FindNode(name)->GetName;
+		Node* copiedNode = new Node(copiedName);
+	}
+	else
+	{
+		return name + ": no such directory or file";
+	}
+	*/
+}
+
+std::string FileSystem::whereis(std::string name)
+{
+	return FindNode(name)->GetName();
 }
