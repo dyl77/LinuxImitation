@@ -143,24 +143,26 @@ std::string FileSystem::cd(std::string dirname)
 	}
 }
 
-std::string FileSystem::cp(std::string name, std::string to)
+std::string FileSystem::cp(std::string originalNodeName, std::string copyNodeName)
 {
-	/*
-	std::string copiedName = "";
+	
 
-	if(FindNode(name) != nullptr)
+	if(FindNode(originalNodeName) != nullptr)
 	{
-		copiedName = FindNode(name)->GetName;
-		Node* copiedNode = new Node(copiedName);
+
+		Node* copiedNode = new Node(copyNodeName, FindNode(originalNodeName)->GetType());
+	       	copiedNode->SetParent(FindNode(originalNodeName)->GetParent());	
+		copiedNode->GetParent()->AddChild(copiedNode);
+		return copyNodeName + " " + copiedNode->GetType() + ": created sucessfully";
 	}
 	else
 	{
-		return name + ": no such directory or file";
+		return originalNodeName + ": no such directory or file";
 	}
-	*/
 }
 
 std::string FileSystem::whereis(std::string name)
 {
-	return FindNode(name)->GetName();
+	return "Work in progress";
+	//return FindNode(name)->GetName();
 }

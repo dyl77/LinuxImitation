@@ -62,5 +62,9 @@ void Terminal::Run()
 		{
 			std::cout << this->fs->cd(modifier1) << std::endl;
 		}
+		if(command == "cp")
+		{
+			std::cout << this->fs->cp(modifier1, modifier2) << std::endl;
+		}
 	}while(command != "bye");
 }
