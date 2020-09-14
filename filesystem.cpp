@@ -145,7 +145,6 @@ std::string FileSystem::cd(std::string dirname)
 
 std::string FileSystem::cp(std::string originalNodeName, std::string copyNodeName)
 {
-	
 
 	if(FindNode(originalNodeName) != nullptr)
 	{
@@ -153,6 +152,15 @@ std::string FileSystem::cp(std::string originalNodeName, std::string copyNodeNam
 		Node* copiedNode = new Node(copyNodeName, FindNode(originalNodeName)->GetType());
 	       	copiedNode->SetParent(FindNode(originalNodeName)->GetParent());	
 		copiedNode->GetParent()->AddChild(copiedNode);
+		std::vector<Node*> originalNodeChildren = FindNode(originalNodeName)->GetChildren();	
+
+		if(originalNodeChildren.size() != 0)
+		{
+			for(int i = 0; i < originalNodeChildren.size(); ++i)
+			{
+				copiedNode->AddChild(originalNodeChildren[i]);
+			}
+		}
 		return copyNodeName + " " + copiedNode->GetType() + ": created sucessfully";
 	}
 	else
