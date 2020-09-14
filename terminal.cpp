@@ -66,5 +66,9 @@ void Terminal::Run()
 		{
 			std::cout << this->fs->cp(modifier1, modifier2) << std::endl;
 		}
+		if(command == "whereis")
+		{
+			std::cout << this->fs->whereis(modifier1) << std::endl;
+		}
 	}while(command != "bye");
 }

@@ -22,7 +22,7 @@ class FileSystem
 		std::string mv(std::string from, std::string to);
 		std::string cd(std::string dirname);
 		std::string cp(std::string name, std:: string to);
-		std::string whereis(std::string name);
+		std::string whereis(std::string key);
 
 };
 

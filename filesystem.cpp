@@ -1,27 +1,33 @@
 #include "filesystem.hpp"
 
+//For inserting node within current directory
 void FileSystem::AddNode(Node* newNode)
 {
 	this->currentDirectory->AddChild(newNode);
 }
 
+//Helper for finding node by name within current directory
 Node* FileSystem::FindNode(std::string name)
 {
 	return this->currentDirectory->GetChild(name);	
 }
 
+//Constructor for filesystem
 FileSystem::FileSystem()
 {
+	//Each filesystem MUST start with a root directory
 	Node* newRoot = new Node("root",'d');
 	this->root = newRoot;
 	this->currentDirectory = newRoot;
 }
 
+//Filesystem destructor
 FileSystem::~FileSystem()
 {
 
 }
 
+//Creates directory of chosen name in current directory
 std::string FileSystem::mkdir(std::string name)
 {
 	std::string creationStatus;
@@ -40,6 +46,7 @@ std::string FileSystem::mkdir(std::string name)
 	return creationStatus;
 }
 
+//Creates file of chosen name in current directory
 std::string FileSystem::addf(std::string name)
 {
 	std::string creationStatus;
@@ -58,6 +65,7 @@ std::string FileSystem::addf(std::string name)
 	return creationStatus;
 }
 
+//Prints the path of current directory
 std::string FileSystem::pwd()
 {
 	std::string workingDirectory = "";
@@ -71,6 +79,7 @@ std::string FileSystem::pwd()
 	return workingDirectory;
 }
 
+//Lists all current children of the current directory
 std::string FileSystem::ls()
 {
 	std::vector<Node*> currentChildren = this->currentDirectory->GetChildren();
@@ -83,6 +92,7 @@ std::string FileSystem::ls()
 	return listDirectory;
 }
 
+//Roemoves node and its children from tree
 std::string FileSystem::rm(std::string name)
 {
 	if(FindNode(name) != nullptr)
@@ -96,6 +106,7 @@ std::string FileSystem::rm(std::string name)
 	}
 }
 
+//Changes node name to new chosen name
 std::string FileSystem::mv(std::string from, std::string to)
 {
 	if(FindNode(from) != nullptr)
@@ -109,6 +120,7 @@ std::string FileSystem::mv(std::string from, std::string to)
 	}
 }
 
+//Changes current directory to the chosen directory
 std::string FileSystem::cd(std::string dirname)
 {
 	if(dirname == "..")
@@ -143,6 +155,7 @@ std::string FileSystem::cd(std::string dirname)
 	}
 }
 
+//Copies node information and children to new node with chosen name
 std::string FileSystem::cp(std::string originalNodeName, std::string copyNodeName)
 {
 
@@ -156,7 +169,7 @@ std::string FileSystem::cp(std::string originalNodeName, std::string copyNodeNam
 
 		if(originalNodeChildren.size() != 0)
 		{
-			for(int i = 0; i < originalNodeChildren.size(); ++i)
+			for(unsigned int i = 0; i < originalNodeChildren.size(); ++i)
 			{
 				copiedNode->AddChild(originalNodeChildren[i]);
 			}
@@ -169,8 +182,25 @@ std::string FileSystem::cp(std::string originalNodeName, std::string copyNodeNam
 	}
 }
 
-std::string FileSystem::whereis(std::string name)
+//Finds node anywhere in system, prints it's path
+std::string FileSystem::whereis(std::string key)
 {
+/*
+	std::string path;
+
+	if(this->root->GetName() == key)
+		path =  key + ": " + pwd();
+
+	Node *found = FindNode(this->root->GetChild(key)->GetName());
+	if(found != nullptr)
+	{
+		this->currentDirectory = found;
+		path = key + ": " + pwd();
+	}
+	if(found == nullptr)
+		path = key + " does not exist";
+	
+	return path;
+*/
 	return "Work in progress";
-	//return FindNode(name)->GetName();
 }
