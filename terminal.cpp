@@ -71,6 +71,11 @@ void Terminal::Run()
 		{
 			std::cout << this->fs->whereis(modifier1) << std::endl;
 		}
+		if(command == "bye")
+		{
+			std::cout << "bye!" << std::endl;
+			break;
+		}
 	}
 	commandFile.close();
 }
