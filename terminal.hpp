@@ -3,6 +3,8 @@
 
 #include "filesystem.hpp"
 #include <iostream>
+#include <fstream>
+
 class Terminal
 {
 	private:

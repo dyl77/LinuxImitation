@@ -11,12 +11,13 @@ void Terminal::Run()
 	std::string modifier1;
 	std::string modifier2;
 	std::string tempstring;
+	std::ifstream commandFile;
+	commandFile.open("commands.txt");
 
-
-	do
+	while(!commandFile.eof())
 	{	
 		std::cout << "$ ";
-		std::getline(std::cin, tempstring);
+		std::getline(commandFile, tempstring);
 
 		std::size_t position = tempstring.find(' ');
 		command = tempstring.substr(0,position);
@@ -70,5 +71,6 @@ void Terminal::Run()
 		{
 			std::cout << this->fs->whereis(modifier1) << std::endl;
 		}
-	}while(command != "bye");
+	}
+	commandFile.close();
 }
