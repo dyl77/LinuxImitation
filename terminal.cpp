@@ -16,25 +16,48 @@ void Terminal::Run()
 
 	while(!commandFile.eof())
 	{	
-		std::cout << "$ ";
+
 		std::getline(commandFile, tempstring);
 
 		std::size_t position = tempstring.find(' ');
 		command = tempstring.substr(0,position);
 		tempstring.erase(0,position+1);
-
+		
+		//Checking for a single command such as ls, which will have no modifiers
 		if(tempstring.size() != 0)
 		{
 			position = tempstring.find(' ');
 			modifier1 = tempstring.substr(0,position);
 			tempstring.erase(0,position+1);
 		}
-
+		
+		//Checking if there is anything left in the line for the second modifier
 		if(tempstring.size() != 0)
 		{
 			modifier2 = tempstring;
 		}
 	
+		//Formatting printing of commandline inputs	
+		if(command != modifier1)
+		{
+			//Printing command with two modifiers
+			if(command != modifier2 && modifier1 != modifier2)
+			{
+				std::cout << "$ " << command << " " << modifier1 << " " << modifier2 << std::endl;
+			}
+			//Printing command with one modifier
+			else
+			{
+				std::cout << "$ " << command << " " << modifier1 << std::endl;
+			}
+		}
+		//Printing command with no modifier
+		else
+		{
+			std::cout << "$ " << command << std::endl;
+		}
+		
+		//All availible commands
 		if(command == "mkdir")
 		{
 			std::cout << this->fs->mkdir(modifier1) << std::endl;
