@@ -165,27 +165,33 @@ std::string FileSystem::cd(std::string dirname)
 //Copies node information and children to new node with chosen name
 std::string FileSystem::cp(std::string originalNodeName, std::string copyNodeName)
 {
-
-	if(FindNode(originalNodeName) != nullptr)
+	if(currentDirectory->GetChild(copyNodeName) == nullptr)
 	{
-
-		Node* copiedNode = new Node(copyNodeName, FindNode(originalNodeName)->GetType());
-	       	copiedNode->SetParent(FindNode(originalNodeName)->GetParent());	
-		copiedNode->GetParent()->AddChild(copiedNode);
-		std::vector<Node*> originalNodeChildren = FindNode(originalNodeName)->GetChildren();	
-
-		if(originalNodeChildren.size() != 0)
+		if(FindNode(originalNodeName) != nullptr)
 		{
-			for(unsigned int i = 0; i < originalNodeChildren.size(); ++i)
+
+			Node* copiedNode = new Node(copyNodeName, FindNode(originalNodeName)->GetType());
+	       		copiedNode->SetParent(FindNode(originalNodeName)->GetParent());	
+			copiedNode->GetParent()->AddChild(copiedNode);
+			std::vector<Node*> originalNodeChildren = FindNode(originalNodeName)->GetChildren();	
+
+			if(originalNodeChildren.size() != 0)
 			{
-				copiedNode->AddChild(originalNodeChildren[i]);
+				for(unsigned int i = 0; i < originalNodeChildren.size(); ++i)
+				{
+					copiedNode->AddChild(originalNodeChildren[i]);
+				}
 			}
+			return copyNodeName + " " + copiedNode->GetType() + ": created sucessfully";
 		}
-		return copyNodeName + " " + copiedNode->GetType() + ": created sucessfully";
+		else
+		{
+			return originalNodeName + ": no such directory or file";
+		}
 	}
 	else
 	{
-		return originalNodeName + ": no such directory or file";
+		return copyNodeName + " already exists in " + currentDirectory->GetName() + ".";
 	}
 }
 
@@ -193,8 +199,27 @@ std::string FileSystem::cp(std::string originalNodeName, std::string copyNodeNam
 std::string FileSystem::whereis(std::string key)
 {
 /*
-	std::string path;
+	Node *currentNode = root;
 
+	while(currentNode->GetName() != key)
+	{
+		if(currentNode->GetChildren().size() != 0)
+		{
+			if(currentNode->GetChild(key)== nullptr)
+			{
+				for(unsigned int i = 0; i < currentNode->GetChildren.size(); ++i)
+				{
+					currentNode->GetChildren.at(i)->GetChild(key);
+				}
+			}
+		}
+		else
+		{
+			
+		}
+	}
+*/	
+/*
 	if(this->root->GetName() == key)
 		path =  key + ": " + pwd();
 
