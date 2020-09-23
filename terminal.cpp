@@ -51,7 +51,6 @@ void Terminal::Run()
 				std::cout << "$ " << command << " " << modifier1 << std::endl;
 			}
 		}
-		//Printing command with no modifier
 		else
 		{
 			std::cout << "$ " << command << std::endl;

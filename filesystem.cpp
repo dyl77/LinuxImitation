@@ -76,7 +76,7 @@ std::string FileSystem::pwd()
 		workingDirectory = "/" + tempNode->GetName() + workingDirectory;
 		tempNode = tempNode->GetParent();
 	}
-	return workingDirectory;
+	return "/morris" + workingDirectory;
 }
 
 //Lists all current children of the current directory
@@ -111,8 +111,15 @@ std::string FileSystem::mv(std::string from, std::string to)
 {
 	if(FindNode(from) != nullptr)
 	{
-		FindNode(from)->SetName(to);
-		return "file/dir renamed successfully";
+		if(currentDirectory->GetChild(to) == nullptr)
+		{
+			FindNode(from)->SetName(to);
+			return "file/dir renamed successfully";
+		}
+		else
+		{
+			return to + " already exists in " + currentDirectory->GetName() + ".";
+		}
 	}
 	else
 	{
