@@ -27,6 +27,12 @@ FileSystem::~FileSystem()
 
 }
 
+//Returns current directory
+Node* FileSystem::getCurrentDirectory()
+{
+	return this->currentDirectory;
+}
+
 //Creates directory of chosen name in current directory
 std::string FileSystem::mkdir(std::string name)
 {
@@ -66,10 +72,10 @@ std::string FileSystem::addf(std::string name)
 }
 
 //Prints the path of current directory
-std::string FileSystem::pwd()
+std::string FileSystem::pwd(Node* currentNode)
 {
 	std::string workingDirectory = "";
-	Node* tempNode = this->currentDirectory;
+	Node* tempNode = currentNode;//this->currentDirectory;
 
 	while(tempNode != nullptr)
 	{
@@ -135,7 +141,7 @@ std::string FileSystem::cd(std::string dirname)
 		if(currentDirectory != this->root)
 		{
 			this->currentDirectory = this->currentDirectory->GetParent();
-			return pwd();
+			return pwd(this->currentDirectory);
 		}
 		else
 		{
@@ -148,7 +154,7 @@ std::string FileSystem::cd(std::string dirname)
 		if(FindNode(dirname)->GetType() == 'd')
 		{
 			this->currentDirectory = FindNode(dirname);
-			return pwd();
+			return pwd(this->currentDirectory);
 		}
 		else
 		{
@@ -195,44 +201,44 @@ std::string FileSystem::cp(std::string originalNodeName, std::string copyNodeNam
 	}
 }
 
+//Recursive helper method that searches subtrees for a node
+Node* FileSystem::SearchHelper(Node* subtree, std::string key)
+{
+
+	if(subtree->GetChildren().size() == 0)
+	{
+		if(subtree->GetName() == key)
+			return subtree;
+		else
+			return nullptr;
+	}
+	else
+	{
+
+		return nullptr;
+		//for(unsigned int i = 0; i < subtree->GetChildren().size(); ++i)
+		//{
+			//SearchHelper(subtree->GetChildren().at(0), key);
+		//}
+	}
+}
+
 //Finds node anywhere in system, prints it's path
 std::string FileSystem::whereis(std::string key)
 {
-/*
-	Node *currentNode = root;
-
-	while(currentNode->GetName() != key)
-	{
-		if(currentNode->GetChildren().size() != 0)
-		{
-			if(currentNode->GetChild(key)== nullptr)
-			{
-				for(unsigned int i = 0; i < currentNode->GetChildren.size(); ++i)
-				{
-					currentNode->GetChildren.at(i)->GetChild(key);
-				}
-			}
-		}
-		else
-		{
-			
-		}
-	}
-*/	
-/*
-	if(this->root->GetName() == key)
-		path =  key + ": " + pwd();
-
-	Node *found = FindNode(this->root->GetChild(key)->GetName());
-	if(found != nullptr)
-	{
-		this->currentDirectory = found;
-		path = key + ": " + pwd();
-	}
-	if(found == nullptr)
-		path = key + " does not exist";
 	
-	return path;
-*/
-	return "Work in progress";
+	std::string path = "";
+
+	Node* foundNode = SearchHelper(this->root, key);
+
+	if(foundNode == nullptr)
+	{
+		return key + ": cannot be found.";
+	}
+	else
+	{
+		return key + ": " + pwd(foundNode);
+	}
+	
+	//return "Work in progress";
 }

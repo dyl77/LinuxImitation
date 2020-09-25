@@ -67,7 +67,7 @@ void Terminal::Run()
 		}
 		if(command == "pwd")
 		{
-			std::cout << this->fs->pwd() << std::endl;
+			std::cout << this->fs->pwd(this->fs->getCurrentDirectory()) << std::endl;
 		}
 		if(command == "ls")
 		{
