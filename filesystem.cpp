@@ -216,10 +216,6 @@ Node* FileSystem::SearchHelper(Node* subtree, std::string key)
 	{
 
 		return nullptr;
-		//for(unsigned int i = 0; i < subtree->GetChildren().size(); ++i)
-		//{
-		//	SearchHelper(subtree->GetChildren().at(0), key);
-		//}
 	}
 }
 
@@ -239,6 +235,4 @@ std::string FileSystem::whereis(std::string key)
 	{
 		return key + ": " + pwd(foundNode);
 	}
-	
-	//return "Work in progress";
 }

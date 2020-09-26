@@ -33,13 +33,20 @@ Node::Node()
 void Node::AddChild(Node* child)
 {
 	this->children.push_back(child);
+	SortChildren();
 }
 
+//Sorts children nodes alphabetically
+void Node::SortChildren()
+{
+	std::sort(this->children.begin(), this->children.end(),[](const Node* lhs, const Node* rhs ) {return lhs->name < rhs->name;} );
+}
 //Creating and adding a new child node to a parent's children vector
 void Node::AddChild(std::string name, char type)
 {
 	Node* newChild = new Node(name, type);
 	this->children.push_back(newChild);
+	SortChildren();
 }
 
 //Removing a child and grandchildren of a node, and returning a T/F based on success
@@ -55,6 +62,7 @@ bool Node::RemoveChild(std::string name)
 			if(children.at(i)->GetName() == name)
 			{
 				children.erase(children.begin()+i);
+				SortChildren();
 			}
 		}
 		return true;
@@ -62,6 +70,7 @@ bool Node::RemoveChild(std::string name)
 	else
 	{	
 		RemoveHelper(GetChild(name));
+		SortChildren();
 		return true;
 	}
 	return false;

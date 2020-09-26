@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <string>
+#include <algorithm>
 
 class Node
 {
@@ -15,6 +16,7 @@ class Node
 		void RemoveHelper(Node* subtree);
 		Node(std::string name, char type);
 		Node();
+		void SortChildren();
 		void AddChild(Node* child);
 		void AddChild(std::string name, char type);
 		bool RemoveChild(std::string name);
