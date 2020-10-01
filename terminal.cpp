@@ -11,13 +11,11 @@ void Terminal::Run()
 	std::string modifier1;
 	std::string modifier2;
 	std::string tempstring;
-	std::ifstream commandFile;
-	commandFile.open("commands.txt");
 
-	while(!commandFile.eof())
+	do
 	{	
-
-		std::getline(commandFile, tempstring);
+		std::cout << "$ ";
+		std::getline(std::cin, tempstring);
 
 		std::size_t position = tempstring.find(' ');
 		command = tempstring.substr(0,position);
@@ -35,25 +33,6 @@ void Terminal::Run()
 		if(tempstring.size() != 0)
 		{
 			modifier2 = tempstring;
-		}
-	
-		//Formatting printing of commandline inputs	
-		if(command != modifier1)
-		{
-			//Printing command with two modifiers
-			if(command != modifier2 && modifier1 != modifier2)
-			{
-				std::cout << "$ " << command << " " << modifier1 << " " << modifier2 << std::endl;
-			}
-			//Printing command with one modifier
-			else
-			{
-				std::cout << "$ " << command << " " << modifier1 << std::endl;
-			}
-		}
-		else
-		{
-			std::cout << "$ " << command << std::endl;
 		}
 		
 		//All availible commands
@@ -93,11 +72,6 @@ void Terminal::Run()
 		{
 			std::cout << this->fs->whereis(modifier1) << std::endl;
 		}
-		if(command == "bye")
-		{
-			std::cout << "bye!" << std::endl;
-			break;
-		}
-	}
-	commandFile.close();
+		
+	}while(command != "exit");
 }
