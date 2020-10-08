@@ -20,6 +20,4 @@ Modifiers may or may not be optional based on the command you've chosen, and you
 - cp <modifier1> <modifier2> : Copies a file or directory from its current name modifier1 to its new name modifier2, for directories this will also copy children.
 - whereis <modifier1> : Searches the entire directory tree for the file name entered for modifier1, and returns its directory path.
 
-Information on usage and documentation will be inserted here when availible.
-
 ![UML](/Project1DSA2.png)
