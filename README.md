@@ -3,9 +3,10 @@
 This is a simple program designed to mimic a simplified version of a linux style file directory.
 This program uses traditional, and custom commands found in the linux environment.
 This program is made with custom pointer based objects, and commands that perform operations on the structures they're contained in.
-You will start with a blank command line, where you should start with creating a directory or file. Do this by using the command mkdir (name) or addf (name).
 
-Commands can be entered in this format: command <modifier1> <modifier2>
+**You will start with a blank command line, where you should start with creating a directory or file. Do this by using the command mkdir (name) or addf (name).**
+
+**Commands can be entered in this format: command <modifier1> <modifier2>**
 Modifiers may or may not be optional based on the command you've chosen, and your command will be sent to the system upon pressing the enter key.
   
 ## Commands are as follows:
